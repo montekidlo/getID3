@@ -1071,7 +1071,7 @@ class getid3_mp3 extends getid3_handler
 
 	function RecursiveFrameScanning(&$offset, &$nextframetestoffset, $ScanAsCBR) {
 		$info = &$this->getid3->info;
-		$firstframetestarray = array('error'=>'', 'warning'=>'', 'avdataend'=>$info['avdataend'], 'avdataoffset'=>$info['avdataoffset']);
+		$firstframetestarray = array('error'=> [], 'warning'=> [], 'avdataend'=>$info['avdataend'], 'avdataoffset'=>$info['avdataoffset']);
 		$this->decodeMPEGaudioHeader($offset, $firstframetestarray, false);
 
 		for ($i = 0; $i < GETID3_MP3_VALID_CHECK_FRAMES; $i++) {
@@ -1081,7 +1081,7 @@ class getid3_mp3 extends getid3_handler
 				return true;
 			}
 
-			$nextframetestarray = array('error'=>'', 'warning'=>'', 'avdataend'=>$info['avdataend'], 'avdataoffset'=>$info['avdataoffset']);
+			$nextframetestarray = array('error'=> [], 'warning'=> [], 'avdataend'=>$info['avdataend'], 'avdataoffset'=>$info['avdataoffset']);
 			if ($this->decodeMPEGaudioHeader($nextframetestoffset, $nextframetestarray, false)) {
 				if ($ScanAsCBR) {
 					// force CBR mode, used for trying to pick out invalid audio streams with valid(?) VBR headers, or VBR streams with no VBR header
